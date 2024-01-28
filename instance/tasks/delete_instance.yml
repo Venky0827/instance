@@ -1,0 +1,5 @@
+- name: "deleting instance "
+  openstack.cloud.server:
+    state: absent
+    name: "{{ item.name }}"
+  loop: "{{ delete_instance }}"

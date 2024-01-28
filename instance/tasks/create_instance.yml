@@ -1,0 +1,12 @@
+- name: "Creating instance"
+  openstack.cloud.server:
+    state: present
+    name: "{{ item.name }}"
+    flavor: "{{ item.flavor }}"
+    image: "{{ item.image }}"
+    network: "{{ item.network }}"
+    volume_size: "{{ item.volume_size }}"
+    boot_from_volume: true
+    wait: true
+  ignore_errors: true
+  loop: "{{ create_instance }}"
