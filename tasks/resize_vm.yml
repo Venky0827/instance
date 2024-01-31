@@ -1,0 +1,13 @@
+- name: Changing the VM flavor to new flavor
+  shell: "openstack server resize --flavor {{ item.flavor }} {{ item.vm_name }}"
+  loop:
+  - "{{ change_flavor }}"
+
+- name: Sleep for 300 seconds and continue with play
+  ansible.builtin.wait_for:
+    timeout: 300
+
+- name: Changing the VM flavor to new flavor
+  shell: "openstack server resize confirm {{ item.vm_name }}"
+  loop:
+  - "{{ change_flavor }}"

@@ -9,17 +9,6 @@
   import_tasks: delete_instance.yml
   when: options.delete_instance
 
-
-# - name: Changing the VM flavor to new flavor
-#   shell: "openstack server resize --flavor {{ item.flavor }} {{ item.name }}"
-#   loop:
-#   - "{{ chnage_flavor }}"
-#   tags:
-#   - resize_vm
-
-# - name: revert the VM flavor to old flavor
-#   shell: "openstack server resize --revert {{ item.name }}"
-#   loop:
-#   - "{{ revert_vm }}"
-#   tags:
-#   - revert_vm
+- name: changing instance flavor 
+  import_tasks: resize_vm.yml
+  when: options.resize_vm
